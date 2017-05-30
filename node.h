@@ -34,7 +34,7 @@ struct Node {
 
 	Node() : 
 		config_(nullptr), parent_(nullptr),
-		max_(SENTINEL), min_(SENTINEL)
+		max_(0), min_(0)
 	{}
 
 	Node(Element* config, Node* parent, int max = 0, int min = 0) :
