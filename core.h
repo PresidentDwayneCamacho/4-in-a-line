@@ -14,8 +14,7 @@ public:
 
 
 private:
-	void calculate_min_max(Node* node);
-	void calculate_adjacent_element();
+	
 
 
 };
