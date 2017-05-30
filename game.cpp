@@ -25,28 +25,37 @@ Game::~Game() {
 
 
 void Game::count_adjacent_symbols(Node* node) {
-
 	for (int i = 0; i < SIZE; ++i) {
+		node->config_[i].player_ = node->config_[i].opponent_ = 0;
 		if (this->can_check_up(i)) {
-
+			this->query_adjacent_element(node, i, UP_ELEM);
 		}
 		if (this->can_check_down(i)) {
-
+			this->query_adjacent_element(node, i, DOWN_ELEM);
 		}
 		if (this->can_check_right(i)) {
-
+			this->query_adjacent_element(node, i, RIGHT_ELEM);
 		}
 		if (this->can_check_left(i)) {
-
+			this->query_adjacent_element(node, i, LEFT_ELEM);
 		}
-
-
 	}
 }
 
 
 void Game::query_adjacent_element(Node* node, int index, int offset) {
-
+	char symbol = node->config_[index].symbol_;
+	char adjacent = node->config_[index + offset].symbol_;
+	if (symbol == SYMBOL::PLAYER)
+		if (adjacent == SYMBOL::PLAYER)
+			++node->config_[index].player_;
+		else if (adjacent == SYMBOL::OPPONENT)
+			++node->config_[index].opponent_;
+	else if (symbol == SYMBOL::OPPONENT)
+		if (adjacent == SYMBOL::OPPONENT)
+			++node->config_[index].player_;
+		else if (adjacent == SYMBOL::PLAYER)
+			++node->config_[index].opponent_;
 }
 
 

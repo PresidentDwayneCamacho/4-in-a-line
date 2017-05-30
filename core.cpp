@@ -25,10 +25,13 @@ int Core::run() {
 	
 	Node* node = test::init_rand_empty_node(3, 3);
 	io.print_game_config(node);
-	game.calculate_min_max(node);
-	std::cout << "max: " << node->max_ << std::endl;
-	std::cout << "min: " << node->min_ << std::endl;
-	
+	std::cout << "\n\n";
+	//game.calculate_min_max(node);
+	//std::cout << "max: " << node->max_ << std::endl;
+	//std::cout << "min: " << node->min_ << std::endl;
+	game.count_adjacent_symbols(node);
+	test::print_node_score(node);
+
 	return 0;
 }
 

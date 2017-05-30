@@ -23,6 +23,7 @@ namespace test {
 	void print_elem(Element& element);
 	void print_node(Node* node);
 
+	void print_node_score(Node* node);
 
 
 	// SUCCESS
@@ -139,6 +140,20 @@ namespace test {
 			std::cout << "\n" << std::endl;
 		}
 		std::cout << "\n\n" << std::endl;
+	}
+
+
+	void print_node_score(Node* node) {
+		std::cout << "Printing scores per node:" << "\n";
+		for (int i = 0; i < SIZE; ++i) {
+			if (i%DIMENSION == 0) {
+				std::cout << "\n";
+			}
+			std::cout <<
+				"(" << i / DIMENSION << "x" << i%DIMENSION << ") = " <<
+				node->config_[i].player_ << ", " <<
+				node->config_[i].opponent_ << "  ";
+		}
 	}
 
 
