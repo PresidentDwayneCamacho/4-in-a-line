@@ -1,8 +1,7 @@
 #include <iostream>
 #include "io.h"
 #include "node.h"
-
-
+#include "constants.h"
 
 IO::IO() {
 
@@ -83,7 +82,7 @@ void IO::prompt() {
 void IO::select_move(std::string& stringInput) {
 	int row = (int) stringInput[0] - 65;
 	int column = (int) stringInput[1] - 48;
-    if (row < 0 || row > DIMENSION || column < 0 || column > DIMENSION) {
+    if (row < 0 || row > constants::DIMENSION || column < 0 || column > constants::DIMENSION) {
         std::cout << ERROR_MESSAGES[2] << std::endl;
     } else {
 
@@ -93,13 +92,13 @@ void IO::select_move(std::string& stringInput) {
 
 void IO::print_game_config(Node* node) {
 	std::cout << "  ";
-	for (int i = 0; i < DIMENSION; i++) {
+	for (int i = 0; i < constants::DIMENSION; i++) {
 		std::cout << i << " ";
 	}
 
-	for (int i = 0; i < SIZE; i++) {
-		if (i % DIMENSION == 0) {
-			std::cout << "\n" << static_cast<char>('A' + (i / DIMENSION)) << " ";
+	for (int i = 0; i < constants::SIZE; i++) {
+		if (i % constants::DIMENSION == 0) {
+			std::cout << "\n" << static_cast<char>('A' + (i / constants::DIMENSION)) << " ";
 		}
 		std::cout << node->config_[i].symbol_ << " ";
 	}

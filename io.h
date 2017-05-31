@@ -1,11 +1,9 @@
 #ifndef IO_H_
 #define IO_H_
+
 struct Node;
 
-
 class IO {
-
-
 public:
 	IO();
 	~IO();
@@ -21,10 +19,9 @@ public:
 private:
 	int timeSeconds_;
 	char firstPlayer_;
-    const int DIMENSION = 8;
-	const int timeParameters[2] = {5, 100};
+	const int timeParameters[2] = {2, 30};
 	const std::string MESSAGES[5] = {
-			"Welcome to Four in a Line.",
+			"Welcome to \"Four in a Line\".",
 			"by Trey \"FuckFace\" Amador and Scott \"ShitBalls\" Matsumura",
 			"Length of time in seconds for the computer to make a decision",
 			"Select who goes first (X = computer, O = player): ",
@@ -36,7 +33,6 @@ private:
 			"Please enter an appropriate option."
 	};
 };
-
 
 #endif
 

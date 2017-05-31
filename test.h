@@ -2,7 +2,7 @@
 #define TEST_H_
 #include <iostream>
 #include "node.h"
-
+#include "constants.h"
 
 
 // the test namespace is used for running unit tests
@@ -81,8 +81,8 @@ namespace test {
 
 
 	Element* init_elements(char token, int player, int opponent) {
-		Element* elem = new Element[SIZE];
-		for (int i = 0; i < SIZE; ++i) {
+		Element* elem = new Element[constants::SIZE];
+		for (int i = 0; i < constants::SIZE; ++i) {
 			elem[i] = { token, player, opponent };
 		}
 		return elem;
@@ -105,8 +105,8 @@ namespace test {
 	// 
 	Node* init_rand_empty_node(int x_place, int o_place) {
 		Node* node = new Node;
-		node->config_ = new Element[SIZE];
-		for (int i = 0; i < SIZE; ++i) {
+		node->config_ = new Element[constants::SIZE];
+		for (int i = 0; i < constants::SIZE; ++i) {
 			char c;
 			if (std::rand() % x_place == 0)
 				c = SYMBOL::OPPONENT;
@@ -132,7 +132,7 @@ namespace test {
 
 	void print_node(Node* node) {
 		std::cout << "Test print node:" << "\n\n";
-		for (int i = 0; i < SIZE; ++i) {
+		for (int i = 0; i < constants::SIZE; ++i) {
 			std::cout << "Element NO. " << i << ".\n";
 			print_elem(node->config_[i]);
 			std::cout << "Max: " << node->max_ << "\n";
@@ -145,12 +145,12 @@ namespace test {
 
 	void print_node_score(Node* node) {
 		std::cout << "Printing scores per node:" << "\n";
-		for (int i = 0; i < SIZE; ++i) {
-			if (i%DIMENSION == 0) {
+		for (int i = 0; i < constants::SIZE; ++i) {
+			if (i % constants::DIMENSION == 0) {
 				std::cout << "\n";
 			}
 			std::cout <<
-				"(" << i / DIMENSION << "x" << i%DIMENSION << ") = " <<
+				"(" << i / constants::DIMENSION << "x" << i%constants::DIMENSION << ") = " <<
 				node->config_[i].player_ << ", " <<
 				node->config_[i].opponent_ << "  ";
 		}

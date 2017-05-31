@@ -1,13 +1,14 @@
 #include "game.h"
 #include "node.h"
+#include "constants.h"
 #include <iostream>
 
 
 namespace {
 	const int RIGHT_ELEM = 1;
 	const int LEFT_ELEM = -1;
-	const int UP_ELEM = -DIMENSION;
-	const int DOWN_ELEM = DIMENSION;
+	const int UP_ELEM = -constants::DIMENSION;
+	const int DOWN_ELEM = constants::DIMENSION;
 
 }
 
@@ -25,7 +26,7 @@ Game::~Game() {
 
 
 void Game::count_adjacent_symbols(Node* node) {
-	for (int i = 0; i < SIZE; ++i) {
+	for (int i = 0; i < constants::SIZE; ++i) {
 		node->config_[i].player_ = node->config_[i].opponent_ = 0;
 		if (this->can_check_up(i)) {
 			this->query_adjacent_element(node, i, UP_ELEM);
@@ -65,7 +66,7 @@ void Game::query_adjacent_element(Node* node, int index, int offset) {
 // two x's next to each other means a point for the opponent
 void Game::calculate_min_max(Node* node) {
 	node->max_ = node->min_ = 0;
-	for (int i = 0; i < SIZE; ++i) {
+	for (int i = 0; i < constants::SIZE; ++i) {
 		if (this->can_check_right(i))
 			this->query_adjacent_min_max(node, i, RIGHT_ELEM);
 		if (this->can_check_down(i))
@@ -75,22 +76,22 @@ void Game::calculate_min_max(Node* node) {
 
 
 inline bool Game::can_check_right(int i) {
-	return i % DIMENSION != DIMENSION - 1;
+	return i % constants::DIMENSION != constants::DIMENSION - 1;
 }
 
 
 inline bool Game::can_check_down(int i) {
-	return i / DIMENSION != DIMENSION - 1;
+	return i / constants::DIMENSION != constants::DIMENSION - 1;
 }
 
 
 inline bool Game::can_check_up(int i) {
-	return i / DIMENSION != 0;
+	return i / constants::DIMENSION != 0;
 }
 
 
 inline bool Game::can_check_left(int i) {
-	return i % DIMENSION != 0;
+	return i % constants::DIMENSION != 0;
 }
 
 

@@ -1,0 +1,13 @@
+# JetBrains
+
+# User-specific stuff:
+.idea/
+
+# CMake
+cmake-build-debug/
+
+## File-based project format:
+*.iws
+
+CMakeLists.txt
+.idea/workspace.xml
