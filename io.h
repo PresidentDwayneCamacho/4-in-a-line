@@ -21,15 +21,16 @@ public:
 private:
 	int timeSeconds_;
 	char firstPlayer_;
+    const int DIMENSION = 8;
 	const int timeParameters[2] = {5, 100};
-	const std::string messages_[5] = {
+	const std::string MESSAGES[5] = {
 			"Welcome to Four in a Line.",
 			"by Trey \"FuckFace\" Amador and Scott \"ShitBalls\" Matsumura",
 			"Length of time in seconds for the computer to make a decision",
 			"Select who goes first (X = computer, O = player): ",
 			"[S]how board, [U]ndo, [Q]uit, or enter move: "
 	};
-	const std::string errorMessages_[3] = {
+	const std::string ERROR_MESSAGES[3] = {
 			"Please enter an appropriate number.",
 			"Please enter an appropriate player.",
 			"Please enter an appropriate option."
