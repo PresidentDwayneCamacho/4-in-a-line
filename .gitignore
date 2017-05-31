@@ -10,4 +10,3 @@ cmake-build-debug/
 *.iws
 
 CMakeLists.txt
-.idea/workspace.xml
