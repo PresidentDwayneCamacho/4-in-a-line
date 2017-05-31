@@ -22,9 +22,10 @@ int Core::run() {
 
 	Game game;
 	IO io;
-	
+
 	Node* node = test::init_rand_empty_node(3, 3);
-	io.print_game_config(node);
+	io.welcome();
+	//io.print_game_config(node);
 	std::cout << "\n\n";
 	//game.calculate_min_max(node);
 	//std::cout << "max: " << node->max_ << std::endl;
