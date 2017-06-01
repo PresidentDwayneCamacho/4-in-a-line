@@ -28,50 +28,14 @@ public:
 	Game();
 	~Game();
 
-
 	int update_min_max_row(Node* node, int row, char player, char opponent);
 	int update_min_max_col(Node* node, int col, char player, char opponent);
 
 	void place_symbol_from_prompt(Node* node, char symbol, int row, int col);
-	void print_node(Node* node);
-
-
-	void calculate_min_max(Node* node);
-	void count_adjacent_symbols(Node* node);
-
-
-
-
-
-	// fxn which counts adjacent by row, then by column
-	//void min_max_open_fours(Node* node);
-
-	//bool check_four_adjacent(Node* node, int begin, int bound, int offset);
-
-	//bool four_open_right(Node* node, char symbol, int index, int offset);
-	//bool four_open_left(Node* node, int index);
-	//bool four_open_up(Node* node, int index);
-	//bool four_open_down(Node* node, int index);
-
-	//bool four_open_spaces(Node* node, char symbol, int index, int offset);
-	//int count_four_adjecent_symbol(Node* node, char symbol, int index);
 
 
 private:
 	ScoreTracker tracker_;
-
-
-	inline bool can_check_right(int i);
-	inline bool can_check_down(int i);
-	inline bool can_check_left(int i);
-	inline bool can_check_up(int i);
-
-	void query_adjacent_element(Node* node, int index, int offset);
-	void query_adjacent_min_max(Node* node, int index, int offset);
-	
-
-private:
-
 
 
 };
