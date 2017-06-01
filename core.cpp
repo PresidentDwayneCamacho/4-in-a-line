@@ -23,14 +23,24 @@ int Core::run() {
 	Game game;
 	IO io;
 
-	Node* node = test_node_01();
+	
+	Node* node = new Node;
+	game.make_first_move(node);
 	io.print_node(node);
-	for (int r = 0; r < constants::DIMENSION; ++r) {
-		test_row_heuristic_02(r);
-	}
-	for (int c = 0; c < constants::DIMENSION; ++c) {
-		test_col_heuristic_01(c);
-	}
+	game.query_next_move(node);
+	
+
+	//game.test_node_querying();
+
+
+	//Node* node = test_node_01();
+	//io.print_node(node);
+	//for (int r = 0; r < constants::DIMENSION; ++r) {
+	//	test_row_heuristic_02(r);
+	//}
+	//for (int c = 0; c < constants::DIMENSION; ++c) {
+	//	test_col_heuristic_01(c);
+	//}
 
 
 	

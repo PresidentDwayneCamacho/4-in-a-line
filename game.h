@@ -1,41 +1,67 @@
 #ifndef GAME_H_
 #define GAME_H_
+#include <vector>
+#include <queue>
 #include "constants.h"
 struct Node;
 
 
 // keeps track of score for rows and columns
 // 
-struct ScoreTracker {
+struct ScoreCounter {
 	int row_[constants::DIMENSION];
 	int col_[constants::DIMENSION];
 };
 
 
-class Game {
+struct Coordinate {
+	char symbol_;
+	int row_;
+	int col_;
+};
 
-	//	not all of the min-max functions should be used
-	//		they are simply present to explore different options
-	//			calculate_min_max is one such option, though insufficient
-	//			min_max_vector is another option, and it seems better
-	//		we should try others
-	//			one example, put game board configuration in hierarchy where 
-	//			number of 3 in a row lines is higher priority, followed by 2 in a row
-	//
+
+
+class Game {
 
 
 public:
 	Game();
 	~Game();
 
+	void make_first_move(Node* node);
+
+	// TODO remove these test functions
+	void test_fill_score_tracker(Node* node);
+	void test_node_querying();
+	Node* test_node_01();
+	// test functions
+
+
+	Node* query_next_move(Node* root);
+	void query_adjacent(Node* node);
+	void query_up(Node* node, Coordinate& coord, int offset, bool& open);
+	void query_down(Node* node, Coordinate& coord, int offset, bool& open);
+	void query_right(Node* node, Coordinate& coord, int offset, bool& open);
+	void query_left(Node* node, Coordinate& coord, int offset, bool& open);
+
+
 	int update_min_max_row(Node* node, int row, char player, char opponent);
 	int update_min_max_col(Node* node, int col, char player, char opponent);
+	int sum_score_tracker();
 
+	void place_symbol_by_indeces(Node* node, char symbol, int row, int col);
 	void place_symbol_from_prompt(Node* node, char symbol, int row, int col);
 
 
+
 private:
-	ScoreTracker tracker_;
+	std::queue<Coordinate> adjacent_spaces_;
+
+
+	// TODO perhaps have a player and opponent tracker ..?
+	ScoreCounter score_counter_;
+
 
 
 };

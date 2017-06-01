@@ -6,6 +6,7 @@
 #include "io.h"
 #include "constants.h"
 #include <iostream>
+#include <chrono>
 
 
 Node* test_node_01();
@@ -16,6 +17,33 @@ void test_row_heuristic_03(int row);
 
 void test_col_heuristic_01(int col);
 void test_col_heuristic_02(int col);
+void test_efficiency();
+
+
+
+void test_efficiency() {
+	Game game;
+
+	long long init = std::chrono::high_resolution_clock::now().time_since_epoch().count();
+
+	Node* first_node = test_node_01();
+	int SAMPLE_SIZE = 10;
+	for (int i = 0; i < SAMPLE_SIZE; ++i) {
+		Node* copy = new Node(first_node);
+		for (int i = 0; i < constants::DIMENSION; ++i) {
+			int row = game.update_min_max_row(copy, i, SYMBOL::PLAYER, SYMBOL::OPPONENT);
+			int col = game.update_min_max_col(copy, i, SYMBOL::PLAYER, SYMBOL::OPPONENT);
+		}
+		delete copy;
+	}
+	delete first_node;
+
+	long long end = std::chrono::high_resolution_clock::now().time_since_epoch().count();
+
+	std::cout << "This took " << (end - init) / 1000000 << std::endl;
+
+}
+
 
 
 void test_row_heuristic_01() {
