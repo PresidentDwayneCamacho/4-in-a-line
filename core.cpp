@@ -1,19 +1,17 @@
+// "Four in a Line"
+// by Trey Amador and Scott Matsumura
+// CPP CS420 Artificial Intelligence
+// Due: Monday June 5, 2017
+
 #include "core.h"
 #include "test.h"
 #include "node.h"
 #include "game.h"
 #include "io.h"
 
+Core::Core() {}
 
-Core::Core() {
-
-}
-
-
-Core::~Core() {
-
-}
-
+Core::~Core() {}
 
 // return negative value upon program failure
 // return 0 upon program success
@@ -24,11 +22,15 @@ int Core::run() {
 	IO io;
 
 	
-	Node* node = new Node;
-	game.make_first_move(node);
-	io.print_node(node);
-	game.query_next_move(node);
+	test_row_and_col_heuristic();
+
+	//Node* node = new Node;
+	//game.make_first_move(node);
+	//io.print_node(node);
+	//game.query_next_move(node);
 	
+	
+
 
 	//game.test_node_querying();
 
@@ -41,8 +43,6 @@ int Core::run() {
 	//for (int c = 0; c < constants::DIMENSION; ++c) {
 	//	test_col_heuristic_01(c);
 	//}
-
-
 	
 	/*
 

@@ -1,7 +1,11 @@
+// "Four in a Line"
+// by Trey Amador and Scott Matsumura
+// CPP CS420 Artificial Intelligence
+// Due: Monday June 5, 2017
+
 #ifndef NODE_H_
 #define NODE_H_
-#include "constants.h"
-
+#include "constant.h"
 
 // indicates the symbol of each tile space
 // we should clarify the syntax
@@ -33,17 +37,17 @@ struct Node {
 
 	// only really necessary for first node
 	Node() :
-		config_(new char[constants::SIZE]),
+		config_(new char[constant::SIZE]),
 		max_(0), min_(0), parent_(nullptr)
 	{
-		for (int i = 0; i < constants::SIZE; ++i)
+		for (int i = 0; i < constant::SIZE; ++i)
 			this->config_[i] = SYMBOL::EMPTY;
 	}
 
 	Node(Node* node) :
-		config_(new char[constants::SIZE]), parent_(node)
+		config_(new char[constant::SIZE]), parent_(node)
 	{
-		for (int i = 0; i < constants::SIZE; ++i)
+		for (int i = 0; i < constant::SIZE; ++i)
 			this->config_[i] = node->config_[i];
 		this->max_ = node->max_;
 		this->min_ = node->min_;
@@ -63,6 +67,4 @@ struct Node {
 
 };
 
-
-#endif
-
+#endif //NODE_H_

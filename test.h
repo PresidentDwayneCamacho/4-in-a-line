@@ -1,15 +1,21 @@
+// "Four in a Line"
+// by Trey Amador and Scott Matsumura
+// CPP CS420 Artificial Intelligence
+// Due: Monday June 5, 2017
+
 #ifndef TEST_H_
 #define TEST_H_
 #include "core.h"
 #include "node.h"
 #include "game.h"
 #include "io.h"
-#include "constants.h"
+#include "constant.h"
 #include <iostream>
 #include <chrono>
 
-
 Node* test_node_01();
+
+void test_row_and_col_heuristic();
 
 void test_row_heuristic_01();
 void test_row_heuristic_02(int row);
@@ -30,7 +36,7 @@ void test_efficiency() {
 	int SAMPLE_SIZE = 10;
 	for (int i = 0; i < SAMPLE_SIZE; ++i) {
 		Node* copy = new Node(first_node);
-		for (int i = 0; i < constants::DIMENSION; ++i) {
+		for (int i = 0; i < constant::LENGTH; ++i) {
 			int row = game.update_min_max_row(copy, i, SYMBOL::PLAYER, SYMBOL::OPPONENT);
 			int col = game.update_min_max_col(copy, i, SYMBOL::PLAYER, SYMBOL::OPPONENT);
 		}
@@ -61,14 +67,34 @@ void test_row_heuristic_01() {
 
 
 
+void test_row_and_col_heuristic() {
+
+	IO io;
+	Node* node = test_node_01();
+	io.print_node(node);
+	std::cout << "\n";
+
+	std::cout << "  ";
+	for (int i = 0; i < constant::LENGTH; ++i)
+		test_col_heuristic_01(i);
+	std::cout << "\n";
+	for (int i = 0; i < constant::LENGTH; ++i)
+		test_row_heuristic_02(i);
+	std::cout << "\n";
+
+	
+	
+}
+
+
 void test_row_heuristic_02(int row) {
 
 	Game game;
 	IO io;
 	Node* node = test_node_01();
-	io.print_node(node);
+	//io.print_node(node);
 	int row_score = game.update_min_max_row(node, row, SYMBOL::PLAYER, SYMBOL::OPPONENT);
-	std::cout << "row " << row << ", heuristic row score: " << row_score << "\n" << std::endl;
+	std::cout << row_score << "  " << std::endl;
 	delete node;
 
 }
@@ -94,9 +120,10 @@ void test_col_heuristic_01(int col) {
 	Game game;
 	IO io;
 	Node* node = test_node_01();
-	io.print_node(node);
+	//io.print_node(node);
 	int col_score = game.update_min_max_col(node, col, SYMBOL::PLAYER, SYMBOL::OPPONENT);
-	std::cout << "col " << col << ", heuristic col score: " << col_score << "\n" << std::endl;
+	
+	std::cout << col_score << " ";
 	delete node;
 
 }
@@ -113,9 +140,6 @@ void test_col_heuristic_02(int col) {
 	delete node;
 
 }
-
-
-
 
 Node* test_node_01() {
 
@@ -141,6 +165,4 @@ Node* test_node_01() {
 
 }
 
-
-#endif
-
+#endif //NODE_H_

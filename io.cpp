@@ -1,18 +1,17 @@
+// "Four in a Line"
+// by Trey Amador and Scott Matsumura
+// CPP CS420 Artificial Intelligence
+// Due: Monday June 5, 2017
+
 #include <iostream>
 #include "io.h"
 #include "node.h"
-#include "constants.h"
+#include "constant.h"
 
 
-IO::IO() {
+IO::IO() {}
 
-}
-
-
-IO::~IO() {
-
-}
-
+IO::~IO() {}
 
 void IO::welcome() {
 	std::cout << MESSAGES[0] << std::endl;
@@ -26,11 +25,11 @@ void IO::ask_time() {
 	bool leaveMenu = false;
 	std::string stringInput;
 	while(!leaveMenu) {
-		std::cout << MESSAGES[2] << " (" << timeParameters[0] << " - " << timeParameters[1] << "): ";
+		std::cout << MESSAGES[2] << " (" << TIME_PARAMETERS[0] << " - " << TIME_PARAMETERS[1] << "): ";
 		std::getline(std::cin, stringInput);
 		try {
 			timeSeconds_ = std::stoi(stringInput);
-			if (timeSeconds_ >= timeParameters[0] && timeSeconds_ <= timeParameters[1]) {
+			if (timeSeconds_ >= TIME_PARAMETERS[0] && timeSeconds_ <= TIME_PARAMETERS[1]) {
 				leaveMenu = true;
 			} else {
 				std::cout << ERROR_MESSAGES[0] << std::endl;
@@ -83,7 +82,7 @@ void IO::prompt() {
 void IO::select_move(std::string& stringInput) {
 	int row = (int) stringInput[0] - 65;
 	int column = (int) stringInput[1] - 48;
-    if (row < 0 || row > constants::DIMENSION || column < 0 || column > constants::DIMENSION) {
+    if (row < 0 || row > constant::LENGTH || column < 0 || column > constant::LENGTH) {
         std::cout << ERROR_MESSAGES[2] << std::endl;
     } else {
 
@@ -91,35 +90,15 @@ void IO::select_move(std::string& stringInput) {
 	std::cout << row << " " << column << std::endl;
 }
 
-
-// works
 void IO::print_node(Node* node) {
 	std::cout << "  ";
-	for (int i = 0; i < constants::DIMENSION; ++i)
+	for (int i = 0; i < constant::LENGTH; ++i)
 		std::cout << i + 1 << " ";
-	for (int i = 0; i < constants::SIZE; ++i) {
-		if (i % constants::DIMENSION == 0)
+	for (int i = 0; i < constant::SIZE; ++i) {
+		if (i % constant::LENGTH == 0)
 			std::cout << "\n" <<
-			static_cast<char>('A' + i / constants::DIMENSION) << " ";
+			static_cast<char>('A' + i / constant::LENGTH) << " ";
 		std::cout << node->config_[i] << " ";
 	}
 	std::cout << "\n" << std::endl;
 }
-
-
-
-/*
-void IO::print_game_config(Node* node) {
-	std::cout << "  ";
-	for (int i = 0; i < constants::DIMENSION; i++) {
-		std::cout << i << " ";
-	}
-
-	for (int i = 0; i < constants::SIZE; i++) {
-		if (i % constants::DIMENSION == 0) {
-			std::cout << "\n" << static_cast<char>('A' + (i / constants::DIMENSION)) << " ";
-		}
-		std::cout << node->config_[i].symbol_ << " ";
-	}
-}
-*/

@@ -1,18 +1,18 @@
+// "Four in a Line"
+// by Trey Amador and Scott Matsumura
+// CPP CS420 Artificial Intelligence
+// Due: Monday June 5, 2017
+
 #ifndef GAME_H_
 #define GAME_H_
 #include <vector>
 #include <queue>
-#include "constants.h"
+#include "constant.h"
 struct Node;
 
 
 // keeps track of score for rows and columns
 // 
-struct ScoreCounter {
-	int row_[constants::DIMENSION];
-	int col_[constants::DIMENSION];
-};
-
 
 struct Coordinate {
 	char symbol_;
@@ -21,9 +21,13 @@ struct Coordinate {
 };
 
 
+struct ScoreCounter {
+	int row_[constant::LENGTH];
+	int col_[constant::LENGTH];
+};
+
 
 class Game {
-
 
 public:
 	Game();
@@ -54,7 +58,6 @@ public:
 	void place_symbol_from_prompt(Node* node, char symbol, int row, int col);
 
 
-
 private:
 	std::queue<Coordinate> adjacent_spaces_;
 
@@ -63,9 +66,7 @@ private:
 	ScoreCounter score_counter_;
 
 
-
 };
 
-
-#endif
+#endif //GAME_H_
 

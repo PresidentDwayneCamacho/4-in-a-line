@@ -1,8 +1,13 @@
+// "Four in a Line"
+// by Trey Amador and Scott Matsumura
+// CPP CS420 Artificial Intelligence
+// Due: Monday June 5, 2017
+
 #ifndef IO_H_
 #define IO_H_
 #include <string>
-struct Node;
 
+struct Node;
 
 class IO {
 
@@ -19,11 +24,10 @@ public:
 
 	void print_node(Node* node);
 
-
 private:
 	int timeSeconds_;
 	char firstPlayer_;
-	const int timeParameters[2] = {2, 30};
+	const int TIME_PARAMETERS[2] = {2, 30};
 	const std::string MESSAGES[5] = {
 			"Welcome to \"Four in a Line\".",
 			"by Trey \"FuckFace\" Amador and Scott \"ShitBalls\" Matsumura",
@@ -36,9 +40,6 @@ private:
 			"Please enter an appropriate player.",
 			"Please enter an appropriate option."
 	};
-
 };
 
-
-#endif
-
+#endif //IO_H_
