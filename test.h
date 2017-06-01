@@ -1,12 +1,16 @@
+// "Four in a Line"
+// by Trey Amador and Scott Matsumura
+// CPP CS420 Artificial Intelligence
+// Due: Monday June 5, 2017
+
 #ifndef TEST_H_
 #define TEST_H_
 #include "core.h"
 #include "node.h"
 #include "game.h"
 #include "io.h"
-#include "constants.h"
+#include "constant.h"
 #include <iostream>
-
 
 Node* test_node_01();
 
@@ -86,9 +90,6 @@ void test_col_heuristic_02(int col) {
 
 }
 
-
-
-
 Node* test_node_01() {
 
 	Node* node = new Node;
@@ -113,6 +114,4 @@ Node* test_node_01() {
 
 }
 
-
-#endif
-
+#endif //NODE_H_
