@@ -1,9 +1,11 @@
 #ifndef IO_H_
 #define IO_H_
-
+#include <string>
 struct Node;
 
+
 class IO {
+
 public:
 	IO();
 	~IO();
@@ -12,8 +14,10 @@ public:
 	void ask_time();
 	void who_is_first();
 	void prompt();
-	void print_game_config(Node* node);
+	//void print_game_config(Node* node);
 	void select_move(std::string& stringInput);
+
+	void print_node(Node* node);
 
 
 private:
@@ -32,7 +36,9 @@ private:
 			"Please enter an appropriate player.",
 			"Please enter an appropriate option."
 	};
+
 };
+
 
 #endif
 

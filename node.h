@@ -1,12 +1,19 @@
 #ifndef NODE_H_
 #define NODE_H_
+#include "constants.h"
+
 
 // indicates the symbol of each tile space
+// we should clarify the syntax
+// here I'm assuming the 'player' is your machine
+// and the 'opponent' would be the other machine
+// 
 enum SYMBOL {
 	EMPTY = '.',
-	OPPONENT = 'X',
-	PLAYER = 'O'
+	PLAYER = 'X',
+	OPPONENT = 'O'
 };
+
 
 // token is how each tile is filled
 // player is 'O', opponents is 'X', empty is '.'
@@ -17,30 +24,39 @@ struct Element {
 	int opponent_;
 };
 
+
 // a node represents each part of a tree
 // ptr to parent_ may be necessary to prune tree
 // 
+
 struct Node {
 
-	Node() : 
-		config_(nullptr), parent_(nullptr),
-		max_(0), min_(0)
-	{}
+	// only really necessary for first node
+	Node() :
+		config_(new char[constants::SIZE]),
+		max_(0), min_(0), parent_(nullptr)
+	{
+		for (int i = 0; i < constants::SIZE; ++i)
+			this->config_[i] = SYMBOL::EMPTY;
+	}
 
-	Node(Element* config, Node* parent, int max = 0, int min = 0) :
-		config_(config), parent_(parent), max_(max), min_(min)
-	{}
+	Node(Node* node) :
+		config_(new char[constants::SIZE]), parent_(node)
+	{
+		for (int i = 0; i < constants::SIZE; ++i)
+			this->config_[i] = node->config_[i];
+		this->max_ = node->max_;
+		this->min_ = node->min_;
+	}
 
-	// parent_ will be deleted upon calling next destructor
-	// do not delete it here
 	~Node() {
-		if (config_ != nullptr) {
+		if (this->config_ != nullptr) {
 			delete[] config_;
 			config_ = nullptr;
 		}
 	}
 
-	Element* config_;
+	char* config_;
 	int max_;
 	int min_;
 	Node* parent_;
@@ -49,3 +65,4 @@ struct Node {
 
 
 #endif
+

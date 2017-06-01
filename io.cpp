@@ -3,6 +3,7 @@
 #include "node.h"
 #include "constants.h"
 
+
 IO::IO() {
 
 }
@@ -26,7 +27,7 @@ void IO::ask_time() {
 	std::string stringInput;
 	while(!leaveMenu) {
 		std::cout << MESSAGES[2] << " (" << timeParameters[0] << " - " << timeParameters[1] << "): ";
-		getline(std::cin, stringInput);
+		std::getline(std::cin, stringInput);
 		try {
 			timeSeconds_ = std::stoi(stringInput);
 			if (timeSeconds_ >= timeParameters[0] && timeSeconds_ <= timeParameters[1]) {
@@ -90,6 +91,24 @@ void IO::select_move(std::string& stringInput) {
 	std::cout << row << " " << column << std::endl;
 }
 
+
+// works
+void IO::print_node(Node* node) {
+	std::cout << "  ";
+	for (int i = 0; i < constants::DIMENSION; ++i)
+		std::cout << i + 1 << " ";
+	for (int i = 0; i < constants::SIZE; ++i) {
+		if (i % constants::DIMENSION == 0)
+			std::cout << "\n" <<
+			static_cast<char>('A' + i / constants::DIMENSION) << " ";
+		std::cout << node->config_[i] << " ";
+	}
+	std::cout << "\n" << std::endl;
+}
+
+
+
+/*
 void IO::print_game_config(Node* node) {
 	std::cout << "  ";
 	for (int i = 0; i < constants::DIMENSION; i++) {
@@ -103,6 +122,7 @@ void IO::print_game_config(Node* node) {
 		std::cout << node->config_[i].symbol_ << " ";
 	}
 }
+*/
 
 //	void IO::print_game_config(Node* node) {
 //	std::cout << "  ";
