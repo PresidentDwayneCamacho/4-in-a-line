@@ -19,8 +19,9 @@ public:
 	void ask_time();
 	void who_is_first();
 	void prompt();
-	//void print_game_config(Node* node);
 	void select_move(std::string& stringInput);
+
+    void tempPrompt(); // Erase when finished
 
 	void print_node(Node* node);
 

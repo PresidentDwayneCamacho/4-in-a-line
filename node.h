@@ -11,23 +11,11 @@
 // we should clarify the syntax
 // here I'm assuming the 'player' is your machine
 // and the 'opponent' would be the other machine
-// 
 enum SYMBOL {
 	EMPTY = '.',
 	PLAYER = 'X',
 	OPPONENT = 'O'
 };
-
-
-// token is how each tile is filled
-// player is 'O', opponents is 'X', empty is '.'
-// as shown from TOKEN enum above
-struct Element {
-	char symbol_;
-	int player_;
-	int opponent_;
-};
-
 
 // a node represents each part of a tree
 // ptr to parent_ may be necessary to prune tree
@@ -38,29 +26,56 @@ struct Node {
 	// only really necessary for first node
 	Node() :
 		config_(new char[constant::SIZE]),
+        playerX_(new int[constant::SIZE]),
+        playerO_(new int[constant::SIZE]),
+        scoreCounterRow_(new int[constant::LENGTH]),
+        scoreCounterCol_(new int[constant::LENGTH]),
 		max_(0), min_(0), parent_(nullptr)
 	{
-		for (int i = 0; i < constant::SIZE; ++i)
-			this->config_[i] = SYMBOL::EMPTY;
+		for (int i = 0; i < constant::SIZE; ++i) {
+            this->config_[i] = SYMBOL::EMPTY;
+            this->playerX_[i] = 0;
+            this->playerO_[i] = 0;
+        }
 	}
 
-	Node(Node* node) :
-		config_(new char[constant::SIZE]), parent_(node)
+	Node(Node* parentNode) :
+		config_(new char[constant::SIZE]),
+        playerX_(new int[constant::SIZE]),
+        playerO_(new int[constant::SIZE]),
+        parent_(parentNode)
 	{
-		for (int i = 0; i < constant::SIZE; ++i)
-			this->config_[i] = node->config_[i];
-		this->max_ = node->max_;
-		this->min_ = node->min_;
+		for (int i = 0; i < constant::SIZE; ++i) {
+            this->config_[i] = parentNode->config_[i];
+            this->playerX_[i] = parentNode->playerX_[i];
+            this->playerO_[i] = parentNode->playerO_[i];
+        }
+        for (int i = 0; i < constant::LENGTH; ++i) {
+            this->scoreCounterRow_[i] = parentNode->scoreCounterRow_[i];
+            this->scoreCounterCol_[i] = parentNode->scoreCounterCol_[i];
+        }
+		this->max_ = parentNode->max_;
+		this->min_ = parentNode->min_;
 	}
 
 	~Node() {
 		if (this->config_ != nullptr) {
 			delete[] config_;
+            delete[] playerX_;
+            delete[] playerO_;
+            delete[] scoreCounterRow_;
+            delete[] scoreCounterCol_;
 			config_ = nullptr;
+            playerX_ = nullptr;
+            playerO_ = nullptr;
 		}
 	}
 
 	char* config_;
+    int* playerX_;
+    int* playerO_;
+    int* scoreCounterRow_;
+    int* scoreCounterCol_;
 	int max_;
 	int min_;
 	Node* parent_;
