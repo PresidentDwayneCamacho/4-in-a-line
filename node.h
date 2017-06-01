@@ -28,8 +28,6 @@ struct Node {
 		config_(new char[constant::SIZE]),
         playerX_(new int[constant::SIZE]),
         playerO_(new int[constant::SIZE]),
-        scoreCounterRow_(new int[constant::LENGTH]),
-        scoreCounterCol_(new int[constant::LENGTH]),
 		max_(0), min_(0), parent_(nullptr)
 	{
 		for (int i = 0; i < constant::SIZE; ++i) {
@@ -50,10 +48,6 @@ struct Node {
             this->playerX_[i] = parentNode->playerX_[i];
             this->playerO_[i] = parentNode->playerO_[i];
         }
-        for (int i = 0; i < constant::LENGTH; ++i) {
-            this->scoreCounterRow_[i] = parentNode->scoreCounterRow_[i];
-            this->scoreCounterCol_[i] = parentNode->scoreCounterCol_[i];
-        }
 		this->max_ = parentNode->max_;
 		this->min_ = parentNode->min_;
 	}
@@ -63,8 +57,6 @@ struct Node {
 			delete[] config_;
             delete[] playerX_;
             delete[] playerO_;
-            delete[] scoreCounterRow_;
-            delete[] scoreCounterCol_;
 			config_ = nullptr;
             playerX_ = nullptr;
             playerO_ = nullptr;
@@ -74,8 +66,6 @@ struct Node {
 	char* config_;
     int* playerX_;
     int* playerO_;
-    int* scoreCounterRow_;
-    int* scoreCounterCol_;
 	int max_;
 	int min_;
 	Node* parent_;
