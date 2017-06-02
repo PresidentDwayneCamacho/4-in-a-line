@@ -6,21 +6,17 @@
 #include "game.h"
 #include "node.h"
 #include "io.h"
-#include "constant.h"
 #include <iostream>
 
-typedef Node* GameBoard;
-
-
-
 Game::Game() {
+    board = new Node;
 	for (int i = 0; i < constant::LENGTH; ++i)
 		score_counter_.row_[i] = score_counter_.col_[i] = 0;
 }
 
 
 Game::~Game() {
-	
+    delete board;
 }
 
 
@@ -160,9 +156,19 @@ void Game::place_symbol_from_prompt(Node* node, char symbol, int row, int col) {
 }
 
 
+void Game::print_node(void (*func)(char*)) {
+    (*func)(board->config_);
+}
 
 
+void Game::print_player_X(void (*func)(int*)) {
+    (*func)(board->playerX_);
+}
 
+
+void Game::print_player_O(void (*func)(int*)) {
+    (*func)(board->playerO_);
+}
 
 
 // TESTING FUNCTIONS
@@ -198,7 +204,6 @@ Node* Game::test_node_01() {
 	std::cout << "game board node" << std::endl;
 	io.print_node(static_cast<Node*>(board));
 
-
 	node->config_[3] = SYMBOL::PLAYER;
 	node->config_[11] = SYMBOL::PLAYER;
 	node->config_[19] = SYMBOL::PLAYER;
@@ -223,10 +228,11 @@ Node* Game::test_node_01() {
 
 void Game::test_node_querying() {
 
-	IO io;
+	//IO io;
 
 	Node* node = this->test_node_01();
-	io.print_node(node);
+	//io.print_node(node);
+    //io.print_game_board();
 	this->test_fill_score_tracker(node);
 
 

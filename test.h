@@ -57,7 +57,8 @@ void test_row_heuristic_01() {
 	Game game;
 	IO io;
 	Node* node = test_node_01();
-	io.print_node(node);
+	//io.print_node(node);
+	io.print_game_board();
 	int row = 2;
 	int row_score = game.update_min_max_row(node, row, SYMBOL::PLAYER, SYMBOL::OPPONENT);
 	std::cout << "row " << row << ", heuristic row score: " << row_score << "\n" << std::endl;
@@ -71,7 +72,8 @@ void test_row_and_col_heuristic() {
 
 	IO io;
 	Node* node = test_node_01();
-	io.print_node(node);
+	//io.print_node(node);
+	io.print_game_board();
 	std::cout << "\n";
 
 	std::cout << "  ";
@@ -106,7 +108,8 @@ void test_row_heuristic_03(int row) {
 	Game game;
 	IO io;
 	Node* node = test_node_01();
-	io.print_node(node);
+	//io.print_node(node);
+	io.print_game_board();
 	int row_score = game.update_min_max_row(node, row, SYMBOL::OPPONENT, SYMBOL::PLAYER);
 	std::cout << "row " << row << ", heuristic row score: " << row_score << "\n" << std::endl;
 	delete node;
@@ -134,7 +137,8 @@ void test_col_heuristic_02(int col) {
 	Game game;
 	IO io;
 	Node* node = test_node_01();
-	io.print_node(node);
+	//io.print_node(node);
+	io.print_game_board();
 	int col_score = game.update_min_max_col(node, col, SYMBOL::OPPONENT, SYMBOL::PLAYER);
 	std::cout << "col " << col << ", heuristic col score: " << col_score << "\n" << std::endl;
 	delete node;

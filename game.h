@@ -7,6 +7,7 @@
 #define GAME_H_
 #include <vector>
 #include <queue>
+#include <functional>
 #include "constant.h"
 struct Node;
 
@@ -58,7 +59,13 @@ public:
 	void place_symbol_from_prompt(Node* node, char symbol, int row, int col);
 
 
+    void print_node(void (*func)(char*));
+    void print_player_X(void (*func)(int*));
+    void print_player_O(void (*func)(int*));
+
 private:
+    typedef Node* GameBoard;
+    GameBoard board;
 	std::queue<Coordinate> adjacent_spaces_;
 
 
